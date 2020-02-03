@@ -22,9 +22,11 @@ var cmdAlterTopic = &cobra.Command{
 
 func init() {
 	cmdAlterTopic.Flags().Int32VarP(&flags.Partitions, "partitions", "p", flags.Partitions, "number of partitions")
+	cmdAlterTopic.Flags().Int16VarP(&flags.ReplicationFactor, "replication-factor", "r", flags.ReplicationFactor, "replication factor")
 	cmdAlterTopic.Flags().StringArrayVarP(&flags.Configs, "config", "c", flags.Configs, "configs in format `key=value`")
 	cmdAlterTopic.Flags().BoolVarP(&flags.ValidateOnly, "validate-only", "v", false, "validate only")
 
 	validation.MarkFlagAtLeastOneRequired(cmdAlterTopic.Flags(), "partitions")
 	validation.MarkFlagAtLeastOneRequired(cmdAlterTopic.Flags(), "config")
+	validation.MarkFlagAtLeastOneRequired(cmdAlterTopic.Flags(), "replication-factor")
 }
